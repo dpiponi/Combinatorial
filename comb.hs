@@ -118,10 +118,19 @@ fexp f@(0 : 0 : _) = fexp' f 0 t' 1
 fexp' f total term n = take (n-1) total ++ drop (n-1) (fexp' f (total+term) (map (/fromIntegral n) (f*d term)) (n+1))
 
 main = do
-    mapM_ print $ take 20 $ fexp (-flog (sin t'))
-    mapM_ print $ take 20 $ asin t'
-    print "--"
-    mapM_ print $ take 200 $ fexp (-flog (t'*exp t'))
+    -- http://oeis.org/A052132
+    
+    --mapM_ print $ take 20 $ (fexp (map (/2) $ flog (t'/(1-t'))))^2
+    let u = map (/2) $ flog (t'/(1-t'))
+    let v = fexp u
+    mapM_ print $ take 20 $ (v `compose` v)
+    --mapM_ print $ take 20 $ (fexp (map (/2) $ flog (t'+t'^2)))^2
+
+    --mapM_ print $ take 20 $ fexp (-flog (sin t'))
+    --mapM_ print $ take 20 $ asin t'
+    --print "--"
+    -- lambert w
+    --mapM_ print $ take 200 $ fexp (-flog (t'*exp t'))
     --mapM_ print $ take 10 $ fexp (2*t'^2)
 {-
     -- Compare http://math.stackexchange.com/questions/208996/half-iterate-of-x2c
