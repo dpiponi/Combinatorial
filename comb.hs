@@ -118,32 +118,40 @@ fexp f@(0 : 0 : _) = fexp' f 0 t' 1
 fexp' f total term n = take (n-1) total ++ drop (n-1) (fexp' f (total+term) (map (/fromIntegral n) (f*d term)) (n+1))
 
 main = do
-    -- http://oeis.org/A052132
-    
-    --mapM_ print $ take 20 $ (fexp (map (/2) $ flog (t'/(1-t'))))^2
-    let u = map (/2) $ flog (t'/(1-t'))
-    let v = fexp u
-    mapM_ print $ take 20 $ (v `compose` v)
-    --mapM_ print $ take 20 $ (fexp (map (/2) $ flog (t'+t'^2)))^2
+    -- OK, I'm not the first to produce this sequence of coefficients
+    -- http://math.stackexchange.com/a/209653
+    let a = flog (t'+t'^2)
+    mapM_ print $ take 20 a
 
-    --mapM_ print $ take 20 $ fexp (-flog (sin t'))
-    --mapM_ print $ take 20 $ asin t'
-    --print "--"
-    -- lambert w
-    --mapM_ print $ take 200 $ fexp (-flog (t'*exp t'))
-    --mapM_ print $ take 10 $ fexp (2*t'^2)
-{-
-    -- Compare http://math.stackexchange.com/questions/208996/half-iterate-of-x2c
-    mapM_ print $ take 20 $ flog (t'+t'^2)
-    print "---"
-    -- http://math.stackexchange.com/questions/1346667/lim-limits-x-rightarrow-0-frac-sin-nx-x-fracn6x3-left-frac
-    mapM_ print $ take 20 $ flog $ sin t'
-    print "---"
-    -- See bottom of page 14 http://www.springer.com/cda/content/document/cda_downloaddocument/9783642004490-c1.pdf?SGWID=0-0-45-767218-p173888310
-    -- or top of page 8 https://www.itp.uni-hannover.de/~flohr/papers/w-cft-survivalkit.pdf
-    mapM_ print $ take 20 $ flog (t'/(1-t'))
-    print "---"
-    mapM_ print $ take 20 $ flog $ t'/sqrt(1-2*t'^2)
-    print "---"
-    mapM_ print $ take 20 $ flog $ t'/cbrt(1-3*t'^3)
-    -}
+    let b = flog (sin t')
+    let c = fexp (b/2)
+    -- http://oeis.org/A048602
+    -- http://oeis.org/A048603
+    mapM_ print $ take 20 c
+    let d = fexp (-b)
+    -- http://oeis.org/A055786
+    -- http://oeis.org/A002595
+    mapM_ print $ take 20 d
+    -- http://oeis.org/A052132
+    -- http://oeis.org/A052135
+    let e = fexp (b/3)
+    mapM_ print $ take 20 e
+    
+    -- See bottom of page 14
+    -- http://www.springer.com/cda/content/document/cda_downloaddocument/9783642004490-c1.pdf
+    -- or top of page 8
+    -- https://www.itp.uni-hannover.de/~flohr/papers/w-cft-survivalkit.pdf
+    let f = flog (t'/(1-t'))
+    mapM_ print $ take 20 f
+
+    let g = flog (t'/sqrt(1-2*t'^2))
+    mapM_ print $ take 20 g
+    let h = flog (t'/cbrt(1-3*t'^3))
+    mapM_ print $ take 20 h
+
+    -- http://oeis.org/A004148
+    let k = fexp (t'^2/(1-t'^2))
+    mapM_ print $ take 20 k
+
+    mapM_ print $ take 20 $ fexp ((sin t')^2)
+    mapM_ print $ take 20 $ atan (tan t'/(1-tan t'))
