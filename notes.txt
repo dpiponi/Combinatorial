@@ -1,0 +1,12 @@
+H(m, n) polynomials homogeneous degree m in n variables.
+
+Operations:
+
++ : H(m, n) -> H(m, n) -> H(m, n)
+* : H(m, n) -> H(m', n) -> H(m+m', n)
+* : H(m, n) -> H(m', n') -> H(m+m', n+n')
+
+identify i j : H(m, n) -> H(m', n-1)
+introduce i : H(m, n) -> H(m', n+1)
+
+apply R ⊕ ⊗ i : H(m, n) -> H(m-1, ·)⊗R
