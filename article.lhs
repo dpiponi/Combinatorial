@@ -18,7 +18,7 @@ I'll also use formal power series somewhat interchangeably with functions. So $z
 To make sure we're on the same page, here are some small theorems in this notation:
 \begin{enumerate}
 \item{$z^mz^n = z^{m+n}$}
-\item{$z^{\circ m}\circ z^{\circ n} = z^{\circ mn}$.}
+\item{$f^{\circ m}\circ f^{\circ n} = f^{\circ m+n}$}
 \item{$(1+z)^n = \sum_{i=0}^n{n\choose i}z^n$}
 \item{$(1+z)^{\circ n}=n+z$.}
 !
