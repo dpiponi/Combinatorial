@@ -170,7 +170,7 @@ Let's try:
 >   let rhs = fexp (flog (sin z))
 >   mapM_ print $ take 20 (lhs-rhs)
 
-Now we can start doing computing fractional iterates.
+Now we can start computing fractional iterates.
 Square root first:
 
 > ex4 = do
