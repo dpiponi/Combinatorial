@@ -83,7 +83,7 @@ $\operator{LOG}(f) = (R(f)-1)z-\frac{1}{2}(R(f)-1)^2z+\frac{1}{3}(R(f)-1)^3z+\ld
 But does it converge?
 Suppose $f$ is of the form $x+a_2x^2+a_3x^3+\ldots$.
 Then $(R(f)-1)g = g\circ f-g$.
-The leading term in $g\circ$ f is the same as the leading term in $g$.
+The leading term in $g\circ f$ is the same as the leading term in $g$.
 So $R(f)-1$ kills the first term of whatever it is applied to, which means that when we sum the terms in $\operatorname{LOG}(f)$, we only need $n$ to get a power series correct to $n$ coefficients.
 Reusing my code from [here](http://blog.sigfpe.com/2007/11/small-combinatorial-library.html), I call $\operatorname{LOG}$ by the name -|flog|-.
 Here is its implementation:
@@ -143,7 +143,7 @@ We have
 \[
 $R(z+\epsilon)f=f(z+\epsilon)=f(z)+\epsilon\frac{df}{dz}+O(\epsilon^2)$.
 \]
-So $R(z+f/n)$ is actually $1+\frac{1}{n}f\frac{d}{dz}$.
+So $R(z+f/n)$ is actually $1+\frac{1}{n}f\frac{d}{dz}$ modulo higher order terms.
 This gives us
 \[
 $\operatorname{EXP}(f) = \lim_{n\rightarrow \infty}(1+\frac{1}{n}f\frac{d}{dz})^nz=\exp(f\frac{d}{dz})z$.
@@ -291,7 +291,7 @@ If you truncate the series you get a half-decent approximaion to a square root i
 >     fromRational x    = fromRational x:repeat 0
 
 > sqrt' x = 1 : rs where rs = map (/2) (xs ^- (rs ⊗ (0:rs)))
->                      _ : xs = x
+>                        _ : xs = x
 > instance (Eq r, Fractional r) => Floating [r] where
 >     sqrt (1 : x) = sqrt' (1 : x)
 >     sqrt _  = error "Can only find sqrt when leading term is 1"
