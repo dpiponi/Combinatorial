@@ -123,7 +123,7 @@ Seems to work!
 It's no good having logarithms if we can't invert them.
 One way to think about the exponential function is that
 \[
-$\exp(x) = \lim_{n\rightarrow 0}(1+\frac{x}{n})^n$
+$\exp(x) = \lim_{n\rightarrow \infty}(1+\frac{x}{n})^n$
 \]
 We get better and better approximations by writing the expression inside the limit as a product of more and more terms.
 We can derive the usual power series for $\exp$ from this, but only if right-distributivity holds.
